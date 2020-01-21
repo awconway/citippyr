@@ -67,20 +67,20 @@ paste_citation_keys <- function(keys, in_paren = FALSE) {
   n_keys <- length(keys)
 
   if(in_paren) {
-    keys <- paste(keys, collapse = "; @")
-    paste0("[@", keys, "]")
+    keys <- paste(keys, collapse = "', '")
+    glue::glue("`r citippy(c('{keys}'))`")
   } else {
     if(n_keys == 2) {
-      keys <- paste(keys, collapse = " and @")
+      keys <- paste(keys, collapse = "', '")
     } else if(n_keys > 2) {
       keys <- paste(
-        paste(keys[-n_keys], collapse = ", @")
+        paste(keys[-n_keys], collapse = "', '")
         , keys[n_keys]
-        , sep = ", and @"
+        , sep = "', '"
       )
     }
 
-    glue::glue("`r citippy('{keys}')`")
+    glue::glue("`r citippy(c('{keys}'))`")
   }
 }
 
