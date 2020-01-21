@@ -80,7 +80,7 @@ paste_citation_keys <- function(keys, in_paren = FALSE) {
       )
     }
 
-    paste0("@", keys)
+    glue::glue("`r citippy('{keys}')`")
   }
 }
 
